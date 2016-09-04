@@ -1,12 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>亂數作業+bootstrap</title>
+<link rel="stylesheet" href="dist/css/bootstrap.min.css">
 <script src="js/jquery.js"></script>
 <script src="js/seedrandom.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+
 <style>
-#randomTable {
+    body 
+    {
+        background-image:url("photo.jpg");
+        background-position:right,top;
+        background-repeat:no-repeat;
+    }
+
+#randomTable 
+{
     font-family: monospace;
     font-size: 2.0em;
 }
@@ -14,25 +25,33 @@
 </head>
 <body>
 
-請輸入亂數表的編號：<input type="text" id="txtSeed" value="1234" />
-&nbsp;<input type="button" id="btnGo" value="產生亂數表" />
+Plese sent number：<input type="text"  id="txtSeed" value="9999" />
+&nbsp;
+    <input type="button" class="btn btn-default btn-lg" id="btnGo" value="產生亂數表" />
+    
+    <button type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Food
+    </button>
+    
 
 <div id="randomTable">
 </div>
 
 <script>
 
-$("#btnGo").click(function () {
+    $("#btnGo").click(function ()
+    {
     var result = "";
 	// 純數字:
-	var sPool = "0123456789";
+    var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
     // 數字+小寫字母: (去除 l, o)
     // var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
     // 數字+大小寫字母: (去除 I, O, l, o)
     // var sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
 
     Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
-	var iRandom = 0; var ch = "?";
+    var iRandom = 0;
+    var ch = "?";
 	for (iRow = 1; iRow <= 10; iRow++) {
 		var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
 		for (iCol = 1; iCol <= 10; iCol++) {
@@ -40,12 +59,78 @@ $("#btnGo").click(function () {
 			ch = sPool.substr(iRandom, 1);
 			sLine += ch;
 		}
-		result += sLine + "<br>";
+		result += sLine + "\n";
 	}
-	$("#randomTable").html(result);
+	$("#comment").html(result);
 });
 
 </script>
+    <div style="margin:0px auto">
+    <div class="container"style=" float:left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">首頁</a></li>
+            <li><a data-toggle="tab" href="#menu1">分頁1</a></li>
+            <li><a data-toggle="tab" href="#menu2">分頁2</a></li>
+            <li><a data-toggle="tab" href="#menu3">分頁3</a></li>
+        </ul>
 
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>HOME</h3>
+                <p>111</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <h3>Menu 3</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+        </div>
+    </div>
+
+   <br>
+
+      
+     <div style="float:left">
+ 
+         <div class="container">
+             <h2>下拉式選單</h2>
+             <p>The form below contains two dropdown menus (select lists):</p>
+             <form>
+                 <div class="form-group">
+                     <label for="sel1">請選擇:</label>
+                     <select class="form-control" id="sel1">
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                     </select>
+                     <br>
+                     <label for="sel2">Mutiple select list (hold shift to select more than one):</label>
+                     <select multiple class="form-control" id="sel2">
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                         <option>5</option>
+                     </select>
+                 </div>
+             </form>
+         </div>
+
+         <form>
+             <div class="form-group">
+                 <label for="comment">妳的亂數在這裡:</label>
+                 <textarea class="form-control" rows="5" id="comment"></textarea>
+             </div>
+         </form>
+    </div>
+ </div>
 </body>
 </html>
